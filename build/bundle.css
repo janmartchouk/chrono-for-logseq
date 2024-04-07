@@ -31,6 +31,39 @@ body {
     transition: .2s ease-in-out;
 }
 
+#backlink {
+    position: fixed !important;
+    top: 1rem;
+    left: .5rem;
+    color: black !important;
+    font-size: 2rem;
+    text-decoration: none !important;
+    margin: 0 1rem;
+    padding: 1rem .5rem;
+    z-index: 10000;
+    display: flex;
+    align-items: start;
+    width: 10rem;
+    height: 10rem;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0) 15%, rgba(255, 255, 255, 1));
+}
+
+#backlink svg {
+    box-shadow: none !important;
+    width: 45px !important;
+    fill: black !important;
+    position: relative;
+    top: -.5rem;
+    /*filter: drop-shadow(0 .1rem 0 black)*/
+}
+
+#backlink:hover {
+    color: var(--darkblue) !important;
+    svg {
+    fill: var(--darkblue) !important;
+    }
+}
+
 .no-animation {
     animation-duration: 0s !important;
 }
@@ -741,8 +774,12 @@ main {
 #main-logo {
     position: fixed;
     pointer-events: none;
-    top: 2rem;
-    left: 2rem;
+    padding: 2rem;
+    padding-left: 5rem;
+    top: 0;
+    right: 0;
+    z-index: 1200;
+    background: linear-gradient(to bottom left, white 50%, transparent 80%);
 }
 
 #settings {
