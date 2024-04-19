@@ -143,24 +143,24 @@
 
 </script>
 
-<div id="init">
+<div id="init" class='container-l blue border pop-l c-white'>
     <Logo width='20rem'/>
     <div id="init-horizontal">
-        <span id="init-horizontal-left">
-            <h2 class="init-title">1. Configure your property names</h2>
-            <p>Chrono will search throughout your graph to find time-able entries.</p>
-            <form id='init-form-autofill'>
+        <div id="init-horizontal-left" class="white c-black pop-s border container-l space-v-l">
+            <h2 class="init-title title">1. Configure your property names</h2>
+            <p class='subtitle'>Chrono will search throughout your graph to find time-able entries.</p>
+            <form id='init-form-autofill' class='pad-v-s'>
                 <group id='autofill-group'>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <span on:click={() => {property_names = german_property_names}} class="btn">🇩🇪</span>
+                    <button type='button' on:click={() => {property_names = german_property_names}} class="btn space-v-m space-v-last space-h-s space-h-first yellow">🇩🇪</button>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <span on:click={() => {property_names = english_property_names}} class="btn">🇬🇧</span>
+                    <button type='button' on:click={() => {property_names = english_property_names}} class="btn space-v-m space-v-last space-h-s yellow">🇬🇧</button>
                     <!-- svelte-ignore a11y-click-events-have-key-events -->
-                    <span on:click={() => {property_names = russian_property_names}} class="btn">🇷🇺</span>
+                    <button type='button' on:click={() => {property_names = russian_property_names}} class="btn space-v-m space-v-last space-h-s yellow">🇷🇺</button>
                 </group>
             </form>
-            <form id='init-form-people' class='init-form'>
-                <p class='init-form-title'>People</p>
+            <form id='init-form-people' class='white pad-v-m space-v-s init-form'>
+                <p class='subtitle secondary space-v-s'>People</p>
                 <span class='init-form-inputs'>
                     <group>
                         <label for="people-birth">Birth:</label>
@@ -172,8 +172,8 @@
                     </group>
                 </span>
             </form>
-            <form id='init-form-events' class='init-form'>
-                <p class='init-form-title'>Events</p>
+            <form id='init-form-events' class='white pad-v-m space-v-s init-form'>
+                <p class='subtitle secondary space-v-s'>Events</p>
                 <span class='init-form-inputs'>
                 <group>
                 <label for="events-birth">Start:</label>
@@ -186,8 +186,8 @@
         </span>
 
             </form>
-            <form id='init-form-works' class='init-form'>
-                <p class='init-form-title'>Works</p>
+            <form id='init-form-works' class='white pad-v-m space-v-s space-v-last init-form'>
+                <p class='subtitle secondary space-v-s'>Works</p>
                 <span class='init-form-inputs'>
                 <group>
                 <label for="works-birth">Date:</label>
@@ -200,11 +200,11 @@
         </span>
 
             </form>
-        </span>
-        <span id='init-horizontal-right'>
-            <h2 class="init-title">2. Provide your Logseq graph</h2>
-            <label for="pages">Upload the 'pages' folder:</label>
+        </div>
+        <div id='init-horizontal-right' class='white c-black pop-m container-l border'>
+            <h2 class="init-title title">2. Provide your Logseq graph</h2>
+            <label for="pages" class='subtitle'>Upload the 'pages' folder:</label>
             <input bind:files id="pages" directory webkitdirectory type="file" />
-        </span>
+        </div>
     </div>
 </div>

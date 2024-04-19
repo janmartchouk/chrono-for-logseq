@@ -108,16 +108,31 @@
             offset = '';
         }
     }
+
+    let color;
+    $: switch (type) {
+        case "people":
+            color = "blue c-white";
+            break;
+        case "events":
+            color = "red c-white";
+            break;
+        case "works":
+            color = "green";
+            break;
+        default:
+            color = "secondary";
+    }
     
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-    class="entry"
+    class="entry border {color} pad-h-m pad-v-s "
     style="
 	left: {left}vw;
 	width: {entry_width}vw;
-	transform: translateY(-{(idx % cutoff) * 3.5}rem);
+	transform: translateY(-{(idx % cutoff) * 4.4}rem);
     display: {display};
 	"
     on:click={() => handle_click()}
@@ -125,15 +140,15 @@
     on:mouseenter={() => ensureTooltipVisibility()}
     on:contextmenu={handle_rightclick}
 >
-    <p class="entry-name entry-{type} {ongoing ? 'entry-ongoing' : ''}">
+    <p class="entry-name subtitle entry-{type} {ongoing ? 'entry-ongoing' : ''}">
         {name}
     </p>
-    <span
+    <div
         bind:this={tooltip}
-        class="entry-tooltip {offset} {animation}">
-        <p class="entry-tooltip-name">{name}</p>
-        <p class="entry-tooltip-fullname">{fullname && fullname != name ? fullname : ""}</p>
-        <p class="entry-dates">
+        class="entry-tooltip c-black border container-m pop-s white {offset} {animation}">
+        <p class="entry-tooltip-name subtitle">{name}</p>
+        <p class="entry-tooltip-fullname subtitle">{fullname && fullname != name ? fullname : ""}</p>
+        <p class="entry-dates subtitle">
             {ongoing && type == "people" ? "*" : ""}{birth >= 0
                 ? birth
                 : birth * -1 + " BC"}{(type == "people" && !ongoing) ||
@@ -142,14 +157,14 @@
                 : ""}
         </p>
         <p>{misc ? misc : ''}</p>
-    </span>
+    </div>
 </div>
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div on:wheel={(evt)=>{evt.stopPropagation()}} on:click={() => close_modal()} class="{'entry-modal ' + modal_visible} {animation} entry-modal-{type}">
-    <div on:click={(evt) => {evt.stopPropagation()}} class='entry-modal-content {animation}'>
-    <span on:click={() => close_modal()} class='entry-modal-close close'>&times;</span>
-    <h3 class='entry-modal-title'>{name}</h3>
-    <Markdown raw_content={content} max_width='50vw' />
+    <div on:click={(evt) => {evt.stopPropagation()}} class='entry-modal-content container-l border {color} pop-s {animation}'>
+        <button type='button' on:click={() => close_modal()} class='title entry-modal-close close btn red c-white'>&times;</button>
+        <h3 class='entry-modal-title title'>{name}</h3>
+        <Markdown raw_content={content} max_width='50vw' />
     </div>
 </div>
 

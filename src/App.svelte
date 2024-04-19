@@ -1,5 +1,6 @@
 <script>
 	import "./style/main.css";
+	import "./style/martcho.uk.css";
 	import InitDialog from "./components/InitDialog.svelte";
 	import Entry from "./components/Entry.svelte";
 	import CategoryToggle from "./components/CategoryToggle.svelte";
@@ -205,7 +206,7 @@
 	let display_zero = "block";
 	$: display_zero = start < 0 && end > 0 ? "block" : "none";
 
-	let cutoff = 30;
+	let cutoff = 20;
 
 	//import-export-functionality thru url params
 	function saveState(variable, name) {
@@ -353,7 +354,7 @@
 </script>
 
 <main>
-	<a  id="backlink" href="https://martcho.uk/">←<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	<a class='btn white' id="backlink" href="https://martcho.uk/"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 		width="100%" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve">
    <path opacity="1.000000" stroke="none" 
 	   d="
@@ -435,10 +436,10 @@
 			{#each epochs as epoch}
 				<Epoch {epoch} {start} {end} {width} />
 			{/each}
-			<span id="timeline-start">{start}</span>
-			<span id="timeline-end">{end}</span>
+			<span class='timeline-year' id="timeline-start">{start}</span>
+			<span class='timeline-year' id="timeline-end">{end}</span>
 			<span
-				id="timeline-zero"
+				class='timeline-year' id="timeline-zero"
 				style="
 			left:{Math.abs((start / width) * 100)}vw;
 			display: {display_zero};
@@ -471,25 +472,24 @@
 			on:click={() => {
 				toggle_hidden_modal();
 			}}
-			class="hidden-modal {hidden_modal_visible}"
+			class=" hidden-modal {hidden_modal_visible}"
 		>
 			<div
 				on:click={(evt) => {
 					evt.stopPropagation();
 				}}
-				class="hidden-modal-content"
+				class="hidden-modal-content container-m bg border pop-m"
 			>
-				<span on:click={() => toggle_hidden_modal()} class="close"
+				<span on:click={() => toggle_hidden_modal()} class="title entry-modal-close close btn red c-white"
 					>&times;</span
 				>
-				<h3>Hidden Entries</h3>
-				<p>Left-click to un-hide</p>
+				<h3 class='title c-text'>Hidden Entries</h3>
+				<p class='subtitle secondary space-v-l space-v-first'>Left-click to un-hide</p>
 				{#each hidden_entries as entry}
-					<span
+					<div class='border pad-h-l pad-v-m hidden-entry hidden-entry-{entry.type}'
 						on:click={() =>
 							show_hidden_entry(hidden_entries.indexOf(entry))}
-						class="hidden-entry entry-{entry.type}"
-						>{entry.name}</span
+						>{entry.name}</div
 					><br />
 				{/each}
 			</div>
@@ -497,10 +497,11 @@
 	{/if}
 </main>
 {#if init}
-	<footer id="settings">
+	<div id='settings-container'>
+	<footer id="settings" class="container-s border pop-m pad-v-m space-v-l space-h-l yellow">
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<span
-			class="settings-group"
+			class="settings-group btn blue space-h-l space-h-first c-white"
 			id="settings-zoom-fit"
 			on:click={() => {
 				render_entries();
@@ -528,7 +529,7 @@
 				bind:value={end}
 			/>
 		</span>
-		<span class="settings-group" id="settings-category-toggles">
+		<span class="settings-group space-h-l" id="settings-category-toggles">
 			<CategoryToggle
 				handle_toggle={toggle_category}
 				category="people"
@@ -546,6 +547,7 @@
 			/>
 		</span>
 		<span class="settings-group" id="settings-cutoff">
+			<label for="cutoff-slider" class='subtitle'>Vertical Spacing: </label>
 			<input
 				id="cutoff-slider"
 				type="range"
@@ -554,17 +556,16 @@
 				step="1"
 				bind:value={cutoff}
 			/>
-			<label for="cutoff-slider">Vertical Spacing: </label>
 		</span>
 		<span class="settings-group" id="settings-info">
-			<p>
+			<p class='subtitle space-h-m space-h-first'>
 				Double-click to zoom in on an entry. Right-click to hide.
 				Left-click to view details. Scroll to zoom, shift + scroll to
 				pan.
 			</p>
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<span
-				id="settings-show-hidden"
+				id="settings-show-hidden" class='btn space-h-m c-white blue'
 				on:click={() => {
 					toggle_hidden_modal();
 				}}><Hidden width="2.4rem" /></span
@@ -572,6 +573,7 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<span
 				id="settings-reset"
+				class='btn red c-white'
 				on:click={() => {
 					if (confirm("Reset the timeline, deleting all entries?")) {
 						init = false;
@@ -583,6 +585,7 @@
 			>
 		</span>
 	</footer>
+	</div>
 {/if}
 
 <svelte:window
