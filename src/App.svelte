@@ -1,6 +1,5 @@
 <script>
 	import "./style/main.css";
-	import "./style/martcho.uk.css";
 	import InitDialog from "./components/InitDialog.svelte";
 	import Entry from "./components/Entry.svelte";
 	import CategoryToggle from "./components/CategoryToggle.svelte";

@@ -1,5 +1,9 @@
 @import url('https://martcho.uk/lib/martcho.uk.css');
 
+body {
+    background: var(--bg) !important;
+}
+
 main {
     display: flex;
     width: 100vw;
