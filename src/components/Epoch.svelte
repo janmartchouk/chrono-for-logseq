@@ -13,7 +13,7 @@
 </script>
 
 <div class='epoch' style="display:{display};left:{left}vw;" id='epoch-{epoch.name}'>
-    <span class='epoch-name'>{epoch.name} ({epoch.start} – {epoch.end})</span>
+    <span class='epoch-name title secondary'>{epoch.name} ({epoch.start} – {epoch.end})</span>
 </div>
 {#each epoch.eras as era} 
 <Era start={start} end={end} era={era} width={width} noborder={era.start == epoch.start ? true : false}/>

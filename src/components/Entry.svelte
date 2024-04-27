@@ -128,7 +128,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-    class="entry border {color} pad-h-m pad-v-s "
+    class="entry border {color} pad-h-m pad-v-s pop-s"
     style="
 	left: {left}vw;
 	width: {entry_width}vw;

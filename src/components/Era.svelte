@@ -12,5 +12,5 @@
 </script>
 
 <div class='era {noborder ? "noborder" : ""}' style="display:{display};left:{left}vw;" id='era-{era.name}'>
-    <span class='era-name'>{era.name}</span>
+    <span class='era-name subtitle secondary'>{era.name}</span>
 </div>
